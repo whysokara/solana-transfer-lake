@@ -38,7 +38,7 @@ The pipeline follows a Bronze → Silver → Gold data lake architecture and is 
 - Virtual environment based dependency isolation
 
 ## Project Structure
-
+```
 solana-transfer-lake/
 ├── data/
 │ ├── raw/
@@ -50,7 +50,7 @@ solana-transfer-lake/
 ├── scripts/
 │ └── fetch_helius_transfers.py
 └── README.md
-
+```
 ## How to Run
 
 1. Fetch raw data:
@@ -58,10 +58,12 @@ solana-transfer-lake/
    python scripts/fetch_helius_transfers.py 
 
 2. Convert CSV to Parquet:
-python jobs/csv_to_parquet.py --date YYYY-MM-DD
+    ```bash
+    python jobs/csv_to_parquet.py --date YYYY-MM-DD
 
 3.  Build daily aggregates:
-python jobs/silver_to_gold_daily.py --date YYYY-MM-DD
+    ```bash
+    python jobs/silver_to_gold_daily.py --date YYYY-MM-DD
 
 ## Notes
 -   Ingestion date and event date are treated separately
