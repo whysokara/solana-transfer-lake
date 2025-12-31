@@ -1,5 +1,7 @@
 import argparse
 import os
+from pyspark.sql.functions import to_date, col
+
 
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (
@@ -60,24 +62,39 @@ def main():
         .csv(raw_path)
     )
 
-    # Basic data quality filters
+    # data quality filters
     df_clean = (
-        df
-        .filter("signature IS NOT NULL")
-        .filter("from_address IS NOT NULL")
-        .filter("to_address IS NOT NULL")
-    )
+    df
+    .filter("success = true")
+    .filter("amount IS NOT NULL")
+    .filter("amount > 0")
+    .filter("from_address IS NOT NULL")
+    .filter("to_address IS NOT NULL")
+    .withColumn("event_date", to_date(col("timestamp")))
+)
+    df_silver = df_clean.select(
+    col("event_date"),
+    col("timestamp"),
+    col("signature"),
+    col("from_address"),
+    col("to_address"),
+    col("token_mint"),
+    col("amount"),
+    col("fee")
+)
+
 
     # Inspect
     df_clean.printSchema()
     df_clean.show(5, truncate=False)
 
     (
-        df_clean
-        .write
-        .mode("overwrite")
-        .parquet(silver_path)
-    )
+    df_silver
+    .write
+    .mode("overwrite")
+    .parquet(silver_path)
+)
+
 
     spark.stop()
 

@@ -15,7 +15,7 @@ response.raise_for_status()
 
 data = response.json()
 
-output_path = "data/raw/transfers/date=2026-01-01/transfers.csv"
+output_path = "data/raw/transfers/date=2025-12-31/transfers.csv"
 
 with open(output_path, "w", newline="") as f:
     writer = csv.writer(f)
