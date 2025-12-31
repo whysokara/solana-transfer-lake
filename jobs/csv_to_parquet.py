@@ -1,3 +1,12 @@
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
+
+logger = logging.getLogger(__name__)
+
 import argparse
 import os
 from pyspark.sql.functions import to_date, col
@@ -84,9 +93,13 @@ def main():
 )
 
 
-    # Inspect
-    df_clean.printSchema()
-    df_clean.show(5, truncate=False)
+    logger.info("Silver dataframe schema:")
+    df_silver.printSchema()
+
+    logger.info("Sample silver records:")
+    df_silver.show(5, truncate=False)
+
+    logger.info(f"Writing silver data to {silver_path}")
 
     (
     df_silver
@@ -94,6 +107,13 @@ def main():
     .mode("overwrite")
     .parquet(silver_path)
 )
+    logger.info("Silver write completed successfully")
+    row_count = df_silver.count()
+
+    logger.info(f"Silver row count: {row_count}")
+
+    if row_count == 0:
+        raise ValueError("Silver dataset is empty. Failing job.")
 
 
     spark.stop()
