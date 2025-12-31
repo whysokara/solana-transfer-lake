@@ -39,3 +39,37 @@ The pipeline follows a Bronze → Silver → Gold data lake architecture and is 
 
 ## Project Structure
 
+solana-transfer-lake/
+├── data/
+│ ├── raw/
+│ ├── silver/
+│ └── gold/
+├── jobs/
+│ ├── csv_to_parquet.py
+│ └── silver_to_gold_daily.py
+├── scripts/
+│ └── fetch_helius_transfers.py
+└── README.md
+
+## How to Run
+
+1. Fetch raw data:
+   ```bash
+   python scripts/fetch_helius_transfers.py 
+
+2. Convert CSV to Parquet:
+python jobs/csv_to_parquet.py --date YYYY-MM-DD
+
+3.  Build daily aggregates:
+python jobs/silver_to_gold_daily.py --date YYYY-MM-DD
+
+## Notes
+-   Ingestion date and event date are treated separately
+-   All jobs are parameterized and idempotent
+-   The pipeline can be lifted to S3 with minimal changes
+
+## Future Work
+-   Airflow orchestration
+-   S3-backed data lake
+-   Streaming ingestion
+-   Dashboarding
