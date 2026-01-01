@@ -1,0 +1,52 @@
+[2026-01-01T18:49:42.385+0530] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-01-01T18:49:42.408+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:19:31.800023+00:00 [queued]>
+[2026-01-01T18:49:42.415+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:19:31.800023+00:00 [queued]>
+[2026-01-01T18:49:42.416+0530] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-01-01T18:49:42.432+0530] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): csv_to_parquet> on 2026-01-01 13:19:31.800023+00:00
+[2026-01-01T18:49:42.435+0530] {standard_task_runner.py:64} INFO - Started process 38644 to run task
+[2026-01-01T18:49:42.441+0530] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'solana_transfer_lake', 'csv_to_parquet', 'manual__2026-01-01T13:19:31.800023+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/solana_transfer_lake_dag.py', '--cfg-path', '/var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T/tmpbiiynn1h']
+[2026-01-01T18:49:42.445+0530] {standard_task_runner.py:91} INFO - Job 18: Subtask csv_to_parquet
+[2026-01-01T18:49:42.496+0530] {task_command.py:426} INFO - Running <TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:19:31.800023+00:00 [running]> on host karas-macbook-air.local
+[2026-01-01T18:49:42.582+0530] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='solana_transfer_lake' AIRFLOW_CTX_TASK_ID='csv_to_parquet' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T13:19:31.800023+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-01T13:19:31.800023+00:00'
+[2026-01-01T18:49:42.583+0530] {taskinstance.py:430} INFO - ::endgroup::
+[2026-01-01T18:49:42.606+0530] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T
+[2026-01-01T18:49:42.608+0530] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n    cd /Users/kara/Desktop/solana-transfer-lake &&\n    source .pavenv/bin/activate &&\n    python jobs/csv_to_parquet.py --date 2026-01-01\n    ']
+[2026-01-01T18:49:42.617+0530] {subprocess.py:86} INFO - Output:
+[2026-01-01T18:49:47.494+0530] {subprocess.py:93} INFO - 26/01/01 18:49:47 WARN Utils: Your hostname, Karas-MacBook-Air.local resolves to a loopback address: 127.0.0.1; using 192.168.1.2 instead (on interface en0)
+[2026-01-01T18:49:47.502+0530] {subprocess.py:93} INFO - 26/01/01 18:49:47 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+[2026-01-01T18:49:48.322+0530] {subprocess.py:93} INFO - Setting default log level to "WARN".
+[2026-01-01T18:49:48.325+0530] {subprocess.py:93} INFO - To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+[2026-01-01T18:49:48.960+0530] {subprocess.py:93} INFO - 26/01/01 18:49:48 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-01-01T18:50:00.284+0530] {subprocess.py:93} INFO - 2026-01-01 18:50:00,283 | INFO | Silver dataframe schema:
+[2026-01-01T18:50:00.293+0530] {subprocess.py:93} INFO - 2026-01-01 18:50:00,292 | INFO | Sample silver records:
+[2026-01-01T18:50:08.271+0530] {subprocess.py:93} INFO - [Stage 0:>                                                          (0 + 1) / 1]                                                                                2026-01-01 18:50:08,270 | INFO | Writing silver data to data/silver/transfers/date=2026-01-01
+[2026-01-01T18:50:12.389+0530] {subprocess.py:93} INFO - [Stage 1:>                                                          (0 + 1) / 1]                                                                                2026-01-01 18:50:12,389 | INFO | Silver write completed successfully
+[2026-01-01T18:50:13.704+0530] {subprocess.py:93} INFO - 2026-01-01 18:50:13,704 | INFO | Silver row count: 334
+[2026-01-01T18:50:14.190+0530] {subprocess.py:93} INFO - root
+[2026-01-01T18:50:14.192+0530] {subprocess.py:93} INFO -  |-- event_date: date (nullable = true)
+[2026-01-01T18:50:14.194+0530] {subprocess.py:93} INFO -  |-- timestamp: timestamp (nullable = true)
+[2026-01-01T18:50:14.195+0530] {subprocess.py:93} INFO -  |-- signature: string (nullable = true)
+[2026-01-01T18:50:14.196+0530] {subprocess.py:93} INFO -  |-- from_address: string (nullable = true)
+[2026-01-01T18:50:14.196+0530] {subprocess.py:93} INFO -  |-- to_address: string (nullable = true)
+[2026-01-01T18:50:14.197+0530] {subprocess.py:93} INFO -  |-- token_mint: string (nullable = true)
+[2026-01-01T18:50:14.198+0530] {subprocess.py:93} INFO -  |-- amount: decimal(18,8) (nullable = true)
+[2026-01-01T18:50:14.198+0530] {subprocess.py:93} INFO -  |-- fee: long (nullable = true)
+[2026-01-01T18:50:14.199+0530] {subprocess.py:93} INFO - 
+[2026-01-01T18:50:14.199+0530] {subprocess.py:93} INFO - +----------+-------------------+----------------------------------------------------------------------------------------+--------------------------------------------+--------------------------------------------+--------------------------------------------+-----------------+-----+
+[2026-01-01T18:50:14.200+0530] {subprocess.py:93} INFO - |event_date|timestamp          |signature                                                                               |from_address                                |to_address                                  |token_mint                                  |amount           |fee  |
+[2026-01-01T18:50:14.200+0530] {subprocess.py:93} INFO - +----------+-------------------+----------------------------------------------------------------------------------------+--------------------------------------------+--------------------------------------------+--------------------------------------------+-----------------+-----+
+[2026-01-01T18:50:14.201+0530] {subprocess.py:93} INFO - |2026-01-01|2026-01-01 13:19:25|4FGkc5DDioJ841CKwVkvmvo8AkqJW4BJHkhN3ijX4botDs5JHbKmaTH1fzysbeR9DJCxzca7NtQV6YedEoJcyhNK|VYrBWG4fero6c24miz1Epr6hfSHePqRFGSGi9X1oZQf |HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC|So11111111111111111111111111111111111111112 |5.21789577       |11700|
+[2026-01-01T18:50:14.201+0530] {subprocess.py:93} INFO - |2026-01-01|2026-01-01 13:19:25|4FGkc5DDioJ841CKwVkvmvo8AkqJW4BJHkhN3ijX4botDs5JHbKmaTH1fzysbeR9DJCxzca7NtQV6YedEoJcyhNK|HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC|VYrBWG4fero6c24miz1Epr6hfSHePqRFGSGi9X1oZQf |ADD8sbMyaXCUzBpad1nqB6TtJuVxk6qs5KZajKTWwkfa|13257630.72522200|11700|
+[2026-01-01T18:50:14.202+0530] {subprocess.py:93} INFO - |2026-01-01|2026-01-01 13:19:25|4FGkc5DDioJ841CKwVkvmvo8AkqJW4BJHkhN3ijX4botDs5JHbKmaTH1fzysbeR9DJCxzca7NtQV6YedEoJcyhNK|8uwQ5owjcY4PYjf9eQWtaC1jxfFLRVSHojkLWhERsTyn|HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC|ADD8sbMyaXCUzBpad1nqB6TtJuVxk6qs5KZajKTWwkfa|11996952.88696600|11700|
+[2026-01-01T18:50:14.203+0530] {subprocess.py:93} INFO - |2026-01-01|2026-01-01 13:19:25|4FGkc5DDioJ841CKwVkvmvo8AkqJW4BJHkhN3ijX4botDs5JHbKmaTH1fzysbeR9DJCxzca7NtQV6YedEoJcyhNK|HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC|8uwQ5owjcY4PYjf9eQWtaC1jxfFLRVSHojkLWhERsTyn|So11111111111111111111111111111111111111112 |4.70658573       |11700|
+[2026-01-01T18:50:14.204+0530] {subprocess.py:93} INFO - |2026-01-01|2026-01-01 13:19:25|61ho99NvKV6BHTqtE7mQwWSGXHDjKP5x4aAkm3uDJtScWpmJKDqCnN66S3SxrGj7Q3z6PSFDw1DqbZRZrjdjhUXC|881u4o89MsxejaFYdr22Aww7yJyFiweTjdVqMsAQYJsf|FaUmC6yGrZW1E6UbtC2tJeqbuiTtJXR1YQoTQEL2yDMD|So11111111111111111111111111111111111111112 |0.00578526       |5000 |
+[2026-01-01T18:50:14.204+0530] {subprocess.py:93} INFO - +----------+-------------------+----------------------------------------------------------------------------------------+--------------------------------------------+--------------------------------------------+--------------------------------------------+-----------------+-----+
+[2026-01-01T18:50:14.205+0530] {subprocess.py:93} INFO - only showing top 5 rows
+[2026-01-01T18:50:14.205+0530] {subprocess.py:93} INFO - 
+[2026-01-01T18:50:14.206+0530] {subprocess.py:93} INFO - 2026-01-01 18:50:14,190 | INFO | Closing down clientserver connection
+[2026-01-01T18:50:14.704+0530] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-01-01T18:50:14.706+0530] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-01-01T18:50:14.747+0530] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=solana_transfer_lake, task_id=csv_to_parquet, run_id=manual__2026-01-01T13:19:31.800023+00:00, execution_date=20260101T131931, start_date=20260101T131942, end_date=20260101T132014
+[2026-01-01T18:50:14.812+0530] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-01-01T18:50:14.841+0530] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-01-01T18:50:14.844+0530] {local_task_job_runner.py:222} INFO - ::endgroup::

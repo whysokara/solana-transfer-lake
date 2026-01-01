@@ -1,0 +1,83 @@
+[2026-01-01T18:27:34.039+0530] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-01-01T18:27:34.077+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solana_transfer_lake.fetch_raw_data manual__2026-01-01T12:57:28.345266+00:00 [queued]>
+[2026-01-01T18:27:34.084+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solana_transfer_lake.fetch_raw_data manual__2026-01-01T12:57:28.345266+00:00 [queued]>
+[2026-01-01T18:27:34.085+0530] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-01-01T18:27:34.100+0530] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): fetch_raw_data> on 2026-01-01 12:57:28.345266+00:00
+[2026-01-01T18:27:34.103+0530] {standard_task_runner.py:64} INFO - Started process 36266 to run task
+[2026-01-01T18:27:34.113+0530] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'solana_transfer_lake', 'fetch_raw_data', 'manual__2026-01-01T12:57:28.345266+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/solana_transfer_lake_dag.py', '--cfg-path', '/var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T/tmpusraba_s']
+[2026-01-01T18:27:34.118+0530] {standard_task_runner.py:91} INFO - Job 5: Subtask fetch_raw_data
+[2026-01-01T18:27:34.175+0530] {task_command.py:426} INFO - Running <TaskInstance: solana_transfer_lake.fetch_raw_data manual__2026-01-01T12:57:28.345266+00:00 [running]> on host karas-macbook-air.local
+[2026-01-01T18:27:34.238+0530] {abstractoperator.py:725} ERROR - Exception rendering Jinja template for task 'fetch_raw_data', field 'bash_command'. Template: '\n    cd {{ var.value.PROJECT_ROOT }} &&\n    source .pavenv/bin/activate &&\n    python scripts/fetch_helius_transfers.py\n    '
+Traceback (most recent call last):
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 13, in root
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/jinja2/sandbox.py", line 327, in getattr
+    value = getattr(obj, attribute)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/context.py", line 110, in __getattr__
+    self.var = Variable.get(key, deserialize_json=self._deserialize_json)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable PROJECT_ROOT does not exist'
+[2026-01-01T18:27:34.246+0530] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 2479, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 2633, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 3094, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 1337, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/abstractoperator.py", line 717, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/template/templater.py", line 169, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/abstractoperator.py", line 675, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/template/templater.py", line 126, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/helpers.py", line 289, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/helpers.py", line 284, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 13, in root
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/jinja2/sandbox.py", line 327, in getattr
+    value = getattr(obj, attribute)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/utils/context.py", line 110, in __getattr__
+    self.var = Variable.get(key, deserialize_json=self._deserialize_json)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable PROJECT_ROOT does not exist'
+[2026-01-01T18:27:34.260+0530] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=solana_transfer_lake, task_id=fetch_raw_data, run_id=manual__2026-01-01T12:57:28.345266+00:00, execution_date=20260101T125728, start_date=20260101T125734, end_date=20260101T125734
+[2026-01-01T18:27:34.288+0530] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task fetch_raw_data ('Variable PROJECT_ROOT does not exist'; 36266)
+[2026-01-01T18:27:34.336+0530] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-01-01T18:27:34.360+0530] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-01T18:27:34.368+0530] {local_task_job_runner.py:222} INFO - ::endgroup::

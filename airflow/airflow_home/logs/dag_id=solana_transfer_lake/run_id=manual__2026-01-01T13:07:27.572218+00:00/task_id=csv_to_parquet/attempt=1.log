@@ -1,0 +1,41 @@
+[2026-01-01T18:37:43.309+0530] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-01-01T18:37:43.332+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:07:27.572218+00:00 [queued]>
+[2026-01-01T18:37:43.342+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:07:27.572218+00:00 [queued]>
+[2026-01-01T18:37:43.342+0530] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-01-01T18:37:43.360+0530] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): csv_to_parquet> on 2026-01-01 13:07:27.572218+00:00
+[2026-01-01T18:37:43.362+0530] {standard_task_runner.py:64} INFO - Started process 37390 to run task
+[2026-01-01T18:37:43.369+0530] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'solana_transfer_lake', 'csv_to_parquet', 'manual__2026-01-01T13:07:27.572218+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/solana_transfer_lake_dag.py', '--cfg-path', '/var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T/tmp9vzc1tgb']
+[2026-01-01T18:37:43.373+0530] {standard_task_runner.py:91} INFO - Job 12: Subtask csv_to_parquet
+[2026-01-01T18:37:43.424+0530] {task_command.py:426} INFO - Running <TaskInstance: solana_transfer_lake.csv_to_parquet manual__2026-01-01T13:07:27.572218+00:00 [running]> on host karas-macbook-air.local
+[2026-01-01T18:37:43.518+0530] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='solana_transfer_lake' AIRFLOW_CTX_TASK_ID='csv_to_parquet' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T13:07:27.572218+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-01T13:07:27.572218+00:00'
+[2026-01-01T18:37:43.519+0530] {taskinstance.py:430} INFO - ::endgroup::
+[2026-01-01T18:37:43.569+0530] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T
+[2026-01-01T18:37:43.570+0530] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n    cd /Users/kara/Desktop/solana-transfer-lake &&\n    source .pavenv/bin/activate &&\n    python jobs/csv_to_parquet.py --date 2026-01-01\n    ']
+[2026-01-01T18:37:43.580+0530] {subprocess.py:86} INFO - Output:
+[2026-01-01T18:37:44.271+0530] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-01-01T18:37:44.272+0530] {subprocess.py:93} INFO -   File "/Users/kara/Desktop/solana-transfer-lake/jobs/csv_to_parquet.py", line 123, in <module>
+[2026-01-01T18:37:44.274+0530] {subprocess.py:93} INFO -     main()
+[2026-01-01T18:37:44.277+0530] {subprocess.py:93} INFO -   File "/Users/kara/Desktop/solana-transfer-lake/jobs/csv_to_parquet.py", line 57, in main
+[2026-01-01T18:37:44.278+0530] {subprocess.py:93} INFO -     raise FileNotFoundError(f"Raw file not found: {raw_path}")
+[2026-01-01T18:37:44.279+0530] {subprocess.py:93} INFO - FileNotFoundError: Raw file not found: data/raw/transfers/date=2026-01-01/transfers.csv
+[2026-01-01T18:37:44.394+0530] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-01-01T18:37:44.397+0530] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-01-01T18:37:44.412+0530] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kara/Desktop/airflow/airflow_venv/lib/python3.11/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-01-01T18:37:44.422+0530] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=solana_transfer_lake, task_id=csv_to_parquet, run_id=manual__2026-01-01T13:07:27.572218+00:00, execution_date=20260101T130727, start_date=20260101T130743, end_date=20260101T130744
+[2026-01-01T18:37:44.442+0530] {standard_task_runner.py:110} ERROR - Failed to execute job 12 for task csv_to_parquet (Bash command failed. The command returned a non-zero exit code 1.; 37390)
+[2026-01-01T18:37:44.464+0530] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-01-01T18:37:44.496+0530] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-01T18:37:44.503+0530] {local_task_job_runner.py:222} INFO - ::endgroup::

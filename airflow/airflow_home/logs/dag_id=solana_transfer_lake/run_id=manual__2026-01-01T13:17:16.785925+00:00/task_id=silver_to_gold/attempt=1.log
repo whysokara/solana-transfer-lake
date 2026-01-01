@@ -1,0 +1,44 @@
+[2026-01-01T18:48:18.649+0530] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-01-01T18:48:18.669+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solana_transfer_lake.silver_to_gold manual__2026-01-01T13:17:16.785925+00:00 [queued]>
+[2026-01-01T18:48:18.678+0530] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solana_transfer_lake.silver_to_gold manual__2026-01-01T13:17:16.785925+00:00 [queued]>
+[2026-01-01T18:48:18.679+0530] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-01-01T18:48:18.697+0530] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): silver_to_gold> on 2026-01-01 13:17:16.785925+00:00
+[2026-01-01T18:48:18.700+0530] {standard_task_runner.py:64} INFO - Started process 38505 to run task
+[2026-01-01T18:48:18.706+0530] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'solana_transfer_lake', 'silver_to_gold', 'manual__2026-01-01T13:17:16.785925+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/solana_transfer_lake_dag.py', '--cfg-path', '/var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T/tmp9q7h3b9a']
+[2026-01-01T18:48:18.711+0530] {standard_task_runner.py:91} INFO - Job 16: Subtask silver_to_gold
+[2026-01-01T18:48:18.780+0530] {task_command.py:426} INFO - Running <TaskInstance: solana_transfer_lake.silver_to_gold manual__2026-01-01T13:17:16.785925+00:00 [running]> on host karas-macbook-air.local
+[2026-01-01T18:48:18.892+0530] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='solana_transfer_lake' AIRFLOW_CTX_TASK_ID='silver_to_gold' AIRFLOW_CTX_EXECUTION_DATE='2026-01-01T13:17:16.785925+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-01T13:17:16.785925+00:00'
+[2026-01-01T18:48:18.893+0530] {taskinstance.py:430} INFO - ::endgroup::
+[2026-01-01T18:48:18.937+0530] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/v7/zbs3yzpx43z_lrltnvljh6580000gn/T
+[2026-01-01T18:48:18.938+0530] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n    cd /Users/kara/Desktop/solana-transfer-lake &&\n    source .pavenv/bin/activate &&\n    python jobs/silver_to_gold_daily.py --date 2026-01-01\n    ']
+[2026-01-01T18:48:18.946+0530] {subprocess.py:86} INFO - Output:
+[2026-01-01T18:48:22.867+0530] {subprocess.py:93} INFO - 26/01/01 18:48:22 WARN Utils: Your hostname, Karas-MacBook-Air.local resolves to a loopback address: 127.0.0.1; using 192.168.1.2 instead (on interface en0)
+[2026-01-01T18:48:22.871+0530] {subprocess.py:93} INFO - 26/01/01 18:48:22 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+[2026-01-01T18:48:23.543+0530] {subprocess.py:93} INFO - Setting default log level to "WARN".
+[2026-01-01T18:48:23.544+0530] {subprocess.py:93} INFO - To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+[2026-01-01T18:48:23.897+0530] {subprocess.py:93} INFO - 26/01/01 18:48:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-01-01T18:48:34.764+0530] {subprocess.py:93} INFO - [Stage 0:>                                                          (0 + 0) / 1][Stage 0:>                                                          (0 + 1) / 1]                                                                                2026-01-01 18:48:34,763 | INFO | Gold dataframe schema:
+[2026-01-01T18:48:34.768+0530] {subprocess.py:93} INFO - 2026-01-01 18:48:34,768 | INFO | Gold daily aggregates:
+[2026-01-01T18:48:45.035+0530] {subprocess.py:93} INFO - [Stage 1:>                                                          (0 + 1) / 1]                                                                                2026-01-01 18:48:45,035 | INFO | Writing gold data to data/gold/transfers_daily/date=2026-01-01
+[2026-01-01T18:48:47.399+0530] {subprocess.py:93} INFO - [Stage 12:>                                                         (0 + 1) / 1]                                                                                2026-01-01 18:48:47,399 | INFO | Gold write completed successfully
+[2026-01-01T18:48:48.467+0530] {subprocess.py:93} INFO - 2026-01-01 18:48:48,467 | INFO | Gold row count: 1
+[2026-01-01T18:48:48.796+0530] {subprocess.py:93} INFO - root
+[2026-01-01T18:48:48.798+0530] {subprocess.py:93} INFO -  |-- event_date: date (nullable = true)
+[2026-01-01T18:48:48.799+0530] {subprocess.py:93} INFO -  |-- total_transactions: long (nullable = false)
+[2026-01-01T18:48:48.800+0530] {subprocess.py:93} INFO -  |-- total_amount: decimal(28,8) (nullable = true)
+[2026-01-01T18:48:48.802+0530] {subprocess.py:93} INFO -  |-- unique_senders: long (nullable = false)
+[2026-01-01T18:48:48.803+0530] {subprocess.py:93} INFO -  |-- unique_receivers: long (nullable = false)
+[2026-01-01T18:48:48.804+0530] {subprocess.py:93} INFO - 
+[2026-01-01T18:48:48.805+0530] {subprocess.py:93} INFO - +----------+------------------+------------------+--------------+----------------+
+[2026-01-01T18:48:48.806+0530] {subprocess.py:93} INFO - |event_date|total_transactions|total_amount      |unique_senders|unique_receivers|
+[2026-01-01T18:48:48.807+0530] {subprocess.py:93} INFO - +----------+------------------+------------------+--------------+----------------+
+[2026-01-01T18:48:48.808+0530] {subprocess.py:93} INFO - |2026-01-01|302               |338601989.95628641|123           |134             |
+[2026-01-01T18:48:48.809+0530] {subprocess.py:93} INFO - +----------+------------------+------------------+--------------+----------------+
+[2026-01-01T18:48:48.810+0530] {subprocess.py:93} INFO - 
+[2026-01-01T18:48:48.810+0530] {subprocess.py:93} INFO - 2026-01-01 18:48:48,799 | INFO | Closing down clientserver connection
+[2026-01-01T18:48:49.353+0530] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-01-01T18:48:49.357+0530] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-01-01T18:48:49.402+0530] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=solana_transfer_lake, task_id=silver_to_gold, run_id=manual__2026-01-01T13:17:16.785925+00:00, execution_date=20260101T131716, start_date=20260101T131818, end_date=20260101T131849
+[2026-01-01T18:48:49.441+0530] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-01-01T18:48:49.468+0530] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-01T18:48:49.469+0530] {local_task_job_runner.py:222} INFO - ::endgroup::
